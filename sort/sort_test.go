@@ -60,7 +60,7 @@ func TestSort(t *testing.T) {
 			chIn1 := FillChannel(tt.In1)
 			chIn2 := FillChannel(tt.In2)
 
-			outCh := SortSequencesFromChannels(chIn1, chIn2)
+			outCh := SequencesFromChannels(chIn1, chIn2)
 
 			out := []int{}
 
@@ -77,7 +77,6 @@ func TestSort(t *testing.T) {
 
 //сравнивает два слайса
 func compareOutSlice(got []int, trueOut []int) bool {
-
 	if len(got) != len(trueOut) {
 		return false
 	}
@@ -98,7 +97,7 @@ func BenchmarkSort(b *testing.B) {
 		chIn1 := FillChannel(n1)
 		chIn2 := FillChannel(n2)
 
-		outCh := SortSequencesFromChannels(chIn1, chIn2)
+		outCh := SequencesFromChannels(chIn1, chIn2)
 
 		out := []int{}
 

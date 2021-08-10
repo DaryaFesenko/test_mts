@@ -1,7 +1,7 @@
 package sort
 
 // Function for sorting two sorted sequences into one
-func SortSequencesFromChannels(in1 <-chan int, in2 <-chan int) <-chan int {
+func SequencesFromChannels(in1 <-chan int, in2 <-chan int) <-chan int {
 	out := make(chan int)
 
 	go func() {
@@ -19,6 +19,7 @@ func SortSequencesFromChannels(in1 <-chan int, in2 <-chan int) <-chan int {
 				readAllValues(in2, out)
 
 				close(out)
+
 				return
 			}
 
@@ -27,6 +28,7 @@ func SortSequencesFromChannels(in1 <-chan int, in2 <-chan int) <-chan int {
 				readAllValues(in1, out)
 
 				close(out)
+
 				return
 			}
 
@@ -53,10 +55,12 @@ func readAllValues(in <-chan int, out chan int) {
 //Method for filling incoming channels
 func FillChannel(n []int) <-chan int {
 	chIn := make(chan int)
+
 	go func() {
 		for _, val := range n {
 			chIn <- val
 		}
+
 		close(chIn)
 	}()
 
